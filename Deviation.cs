@@ -12,6 +12,25 @@ class Deviation
         }
         return Math.Sqrt(summationSquared / (dataSet.Length - 1 ));
     }
+    public static double GetCorrelation(Double[] xSet,Double[] ySet, double xMean, double yMean)
+    {
+        double summationProduct = 0;
+
+        for(int i = 0; i < xSet.Length; i++)
+        {
+            Console.WriteLine((xSet[i] - xMean) * (ySet[i] - yMean));
+            summationProduct += (xSet[i] - xMean) * (ySet[i] - yMean);
+        }
+        double xSTD = GetStandardDeviation(xSet, xMean);
+        double ySTD = GetStandardDeviation(ySet, yMean);
+        double numerator = summationProduct / (xSet.Length -1);
+        double denominator = xSTD * ySTD;
+        return (numerator / denominator);
+    }
+    public static double GetCoefficientVariance(double std, double mean)
+	{
+		return std / mean;
+	}
     static void Main()
     {
             //Your code goes here
